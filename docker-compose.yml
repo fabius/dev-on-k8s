@@ -1,0 +1,12 @@
+version: "3"
+services:
+  myservice: # call this anything you like
+    build: .
+    environment:
+      NAME: "kube"
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: "postgres"
