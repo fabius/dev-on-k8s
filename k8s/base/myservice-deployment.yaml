@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --out k8s
+    kompose.version: 1.21.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: myservice
+  name: myservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: myservice
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --out k8s
+        kompose.version: 1.21.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: myservice
+    spec:
+      containers:
+      - env:
+        - name: NAME
+          value: kube
+        image: myservice
+        imagePullPolicy: ""
+        name: myservice
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
